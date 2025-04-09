@@ -1,3 +1,4 @@
+/* CSS Base */
 body {
     min-height: 100vh;
     background-image: url(../imagens/1155.jpg);
@@ -8,7 +9,7 @@ body {
     margin: 0;
     font-family: Geneva, Verdana, sans-serif;
     scroll-behavior: smooth;
-    color: white
+    color: white;
 }
 
 .header-div {
@@ -26,47 +27,39 @@ h1 {
 }
 
 header hr {
-    width: 500px;
+    width: 90%;
 }
 
 .container {
     margin: 80px auto;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    position: relative;
     max-width: 50%;
-    background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 8%;
     backdrop-filter: blur(55px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 2rem 3rem;
-
 }
 
 .buttom {
     align-self: flex-end;
-    background-color: rgb(233, 233, 233);
-    border: 2px solid #282A36;
+    background-color: white;
+    border: 2px solid #242222;
     border-radius: 4px;
     font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-#add:hover {
-    background-color: white;
-    cursor: pointer;
+.buttom:hover {
+    background-color: #242222;
+    color: white;
+    border: 2px solid white;
 }
 
 .container hr {
     width: 100%;
     margin-top: 10px;
-}
-
-#lista-filmes {
-    width: 100%;
 }
 
 .filme {
@@ -96,14 +89,13 @@ img {
 
 .opcoes button {
     width: 49%;
-    border: none;
-    outline: none;
-    width: 100%;
+    border: 2px solid black;
     height: 40px;
-    border-radius: 40px;
+    border-radius: 6px;
     margin: 3px auto 10px auto;
     cursor: pointer;
-    background-color:rgb(255, 255, 255) ;
+    background-color:white;
+    font-size: 25px;
 }
 
 a {
@@ -142,6 +134,7 @@ nav a{
     padding: 2px;
 }
 
+/* Responsividade */
 @media (max-width: 1182px) {
     .filme {
         padding: 2px;
