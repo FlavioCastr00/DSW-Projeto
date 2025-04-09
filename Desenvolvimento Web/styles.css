@@ -1,0 +1,99 @@
+html {
+    background-color: #4D5375;
+    color: white
+}
+
+header {
+    text-align: center;
+    font-family: Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: #FF4500;
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+header hr {
+    width: 300px;
+}
+
+.container {
+    width: 80%;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#add {
+    align-self: flex-end;
+    background-color: #FF4500;
+    border: 2px solid #282A36;
+    border-radius: 4px;
+    font-size: 15px;
+}
+
+#add:hover {
+    background-color: white;
+}
+
+.container hr {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.filme {
+    background-color: #282A36;
+    min-width: 50%;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+.filme-desc {
+    display: flex;
+    flex-direction: row;
+}
+
+img {
+    width: 130px;
+    margin: 10px;
+}
+
+.desc {
+    margin: 10px 10px;
+}
+
+.opcoes{
+    width: 90%;
+    margin: 10px auto;
+}
+
+.opcoes button {
+    width: 49%;
+}
+
+@media (max-width: 741px) {
+    .filme-desc {
+        display: block;
+    }
+
+    img {
+        display: block;
+        width: 130px;
+        margin: 10px auto;
+    }
+
+    .desc {
+        text-align: center;
+    }
+
+    .opcoes{
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .opcoes button {
+        width: 49%;
+    }
+}
