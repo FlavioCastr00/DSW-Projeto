@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
     <html>
         <head>
-            <script src="assets/js/script.js" defer></script>
+            <script src="assets/js/login-script.js" defer></script>
             <link rel="stylesheet" href="./assets/css/login.css">
         </head>
         <body>
@@ -45,22 +45,22 @@
                 <span class="close">&times;</span>
                 <h2>Cadastro</h2>
                 <form id="form-cadastro">
-                    <label for="titulo">Nome:</label>
-                    <input type="text" id="titulo" name="titulo" required>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
 
-                    <label for="diretor">Sobrenome:</label>
-                    <input type="text" id="diretor" name="diretor" required>
+                    <label for="sobrenome">Sobrenome:</label>
+                    <input type="text" id="sobrenome" name="sobrenome" required>
 
-                    <label for="roteirista">Email:</label>
-                    <input type="text" id="roteirista" name="roteirista" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
 
-                    <label for="elenco">Senha:</label>
-                    <input type="text" id="elenco" name="elenco" required>
+                    <label for="senha">Senha: <span class="erro" id="sinal-erro">senhas não coincidem &times;</span></label>
+                    <input type="text" id="senha" name="senha" required>
 
-                    <label for="nota">Confirme a senha:</label>
-                    <input type="text" id="nota" name="nota" required>
+                    <label for="confirma-senha">Confirme a senha: <span class="erro" id="sinal-erro">senhas não coincidem &times;</span></label>
+                    <input type="text" id="confirma-senha" name="confirma-senha" required>
 
-                    <button type="submit">Salvar</button>
+                    <input type="submit" value="Salvar">
                 </form>
                 </div>
             </div>
