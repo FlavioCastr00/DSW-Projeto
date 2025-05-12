@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const addButton = document.getElementById('add');
+    const botãoForm = document.getElementById('chamarForm');
     const modal = document.getElementById('modal-cadastro');
     const closeModal = document.querySelector('.close');
     const formCadastro = document.getElementById('form-cadastro');
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
     // Abrir modal ao clicar no botão "Add +"
-    addButton.addEventListener('click', () => {
+    botãoForm.addEventListener('click', () => {
       modal.style.display = 'flex';
     });
   

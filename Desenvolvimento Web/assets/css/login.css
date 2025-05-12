@@ -184,6 +184,7 @@ button:hover {
 .modal-content {
     background-color: #242222;
     padding: 20px;
+    border: 2px solid white;
     border-radius: 8px;
     width: 90%;
     max-width: 500px;
