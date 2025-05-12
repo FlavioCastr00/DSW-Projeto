@@ -1,0 +1,243 @@
+/* CSS Base */
+body {
+    min-height: 100vh;
+    background-image: url(../imagens/1155.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+    color: white;
+}
+
+.header-div {
+    text-align: center;
+    background-color: #242222;
+    width: 40%;
+    margin: 10px auto;
+    border: 2px solid white;
+    border-radius: 12px;
+}
+
+h1 {
+    font-size: 45px;
+    margin: 10px 0;
+}
+
+header hr {
+    width: 90%;
+}
+
+.container {
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8%;
+    backdrop-filter: blur(55px);
+    padding: 2rem 3rem;
+}
+
+.buttom {
+    align-self: flex-end;
+    background-color: white;
+    border: 2px solid #242222;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.buttom:hover {
+    background-color: #242222;
+    color: white;
+    border: 2px solid white;
+}
+
+.container hr {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.filme {
+    background-color: #242222;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+.filme-desc {
+    display: flex;
+    flex-direction: row;
+}
+
+img {
+    width: 130px;
+    margin: 10px;
+}
+
+.desc {
+    margin: 10px 10px;
+}
+
+.opcoes{
+    width: 90%;
+    margin: 10px auto;
+}
+
+.opcoes button {
+    width: 49%;
+    border: 2px solid black;
+    height: 40px;
+    border-radius: 6px;
+    margin: 3px auto 10px auto;
+    cursor: pointer;
+    background-color:white;
+    font-size: 25px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #4eb0f1
+}
+
+footer {
+    background-color: #242222;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+}
+
+.footer-div {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;   
+}
+
+.recursos {
+    width: 70%;
+    display: flexbox;
+}
+
+.nav-div {
+    display: flex;
+    width: 30%;
+    align-items: end;
+    justify-items: end;
+    margin-bottom: 17px;
+}
+
+nav a{
+    color: black;
+    padding: 2px;
+}
+
+/* Responsividade */
+@media (max-width: 1182px) {
+    .filme {
+        padding: 2px;
+    }
+    
+    .filme-desc {
+        display: block;
+    }
+
+    img {
+        display: block;
+        width: 130px;
+        margin: 10px auto;
+    }
+
+    .desc {
+        text-align: center;
+    }
+
+    .opcoes{
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .opcoes button {
+        width:100%;
+    }
+}
+
+/* Estilos do modal */
+.modal {
+  display: none; /* Escondido por padrão */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+  
+.modal-content {
+  background-color: #242222;
+  padding: 20px;
+  border: 2px solid white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+  
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: white;
+}
+  
+.modal-content label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: white;
+}
+  
+.modal-content input {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+  
+.modal-content button[type="submit"] {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+  
+.modal-content button[type="submit"]:hover {
+  background-color: #218838;
+}
+  
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: red;
+}

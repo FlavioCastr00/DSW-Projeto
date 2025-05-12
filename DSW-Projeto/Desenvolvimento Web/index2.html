@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <title>O Filmógrafo</title>
+  <script src="assets/js/script.js" defer></script>
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="icon" href="./assets/imagens/cinema.ico" type="image/x-icon">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="header-div">
+        <h1 id="topo">O Filmógrafo</h1>
+        <hr>
+        <p>Crie a sua lista de Filmes</p>
+      </div>
+    </header>
+    <section>
+      <div class="container">
+        <button id="chamarForm" class="buttom">Add +</button>
+        <hr>
+        <div id="lista-filmes"> <!-- Lista de filmes será gerada aqui -->
+          <div class="filme">
+            <div class="filme-desc">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS32nNcJMbteNSLj03DZcsCc26aNe-Sf_p1Hw&s">
+              <div class="desc">
+                <h2>Mad Max: Estrada da Fúria</h2>
+                <p>Diretor: George Miller</p>
+                <p>Roteirista: George Miller</p>
+                <p>Elenco: Tom Hardy, Charlize Theron, Nicholas Hoult</p>
+                <h3>Nota: 8.0/10.0</h3>
+              </div>
+            </div>
+            <div class="opcoes">
+              <button onclick="editarFilme(0)">Editar</button>
+              <button onclick="deletarFilme(0)">Deletar</button>
+            </div>
+          </div>
+      </div>
+    </section>
+    <footer>
+      <div class="footer-div">
+        <div class="recursos">
+          <h3>Recursos:</h3>
+          <p>Icones: <a href="https://www.flaticon.com/free-icons/cinema" title="cinema icons">Cinema icons created by Freepik - Flaticon</a></p>
+        </div>
+        <div class="nav-div">
+          <nav>
+            <a href="#topo" class="buttom">Voltar ao topo</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modal de cadastro -->
+  <div id="modal-cadastro" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Adicionar Filme</h2>
+      <form id="form-cadastro">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
+
+        <label for="diretor">Diretor:</label>
+        <input type="text" id="diretor" name="diretor" required>
+
+        <label for="roteirista">Roteirista:</label>
+        <input type="text" id="roteirista" name="roteirista" required>
+
+        <label for="elenco">Elenco:</label>
+        <input type="text" id="elenco" name="elenco" required>
+
+        <label for="nota">Nota:</label>
+        <input type="text" id="nota" name="nota" required>
+
+        <label for="imagem">URL da Imagem:</label>
+        <input type="text" id="imagem" name="imagem" required>
+
+        <button type="submit">Salvar</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
