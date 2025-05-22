@@ -60,7 +60,7 @@
     <div class="modal-content">
       <span class="close">&times;</span>
       <h2>Adicionar Filme</h2>
-      <form acation="./assets/php/cadastro-filmes.inc.php" id="form-cadastro" method="post">
+      <form id="form-cadastro" action="./assets/php/cadastro-filmes.inc.php" method="post">
         <label for="titulo">Título:</label>
         <input type="text" id="titulo" name="titulo" placeholder="Robocop - O Policial do Futuro" required>
 
@@ -74,7 +74,7 @@
         <input type="text" id="elenco" name="elenco" placeholder="Peter Weller e Nancy Allen" required>
 
         <label for="nota">Nota:</label>
-        <input type="text" id="nota" name="nota" placeholder="10/10" required>
+        <input type="number" id="nota" name="nota" placeholder="10" required>
 
         <label for="imagem">URL da Imagem:</label>
         <input type="text" id="imagem" name="imagem" placeholder="https://media-cache.cinematerial.com/p/500x/rfbsfifj/robocop-movie-cover.jpg?v=1518192744" required>

@@ -10,32 +10,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $imagem = $_POST["imagem"];
 
     try {
-        require_once "data-base-handler.inc.php"; //inclui data-base-handler.inc.php
+        require_once "./data-base-handler.inc.php"; //inclui data-base-handler.inc.php
 
-        $query = "INSERT INTO filmesdb (titulo, diretor, roteirista, elenco, nota, imagem) VALUES (:titulo, :diretor, :roteirista,
-        :elenco, :nota, :imagem);";
+        $query = "INSERT INTO filmes (titulo, diretor, roteirista, elenco, nota, imagem) VALUES (:titulo, :diretor, :roteirista, :elenco, :nota, :imagem);";
 
-        $prompt = $pdo->prepare($query); //envia a query para o DB
+        $stmt = $pdo->prepare($query); //envia a query para o DB
         
         //usando parametros de "nome":
-        $prompt->bindParam(":titulo", $titulo);
-        $prompt->bindParam(":diretor", $diretor);
-        $prompt->bindParam(":roteirista", $roteirista);
-        $prompt->bindParam(":elenco", $elenco);
-        $prompt->bindParam(":nota", $nota);
-        $prompt->bindParam(":imagem", $imagem);
+        $stmt->bindParam(":titulo", $titulo);
+        $stmt->bindParam(":diretor", $diretor);
+        $stmt->bindParam(":roteirista", $roteirista);
+        $stmt->bindParam(":elenco", $elenco);
+        $stmt->bindParam(":nota", $nota);
+        $stmt->bindParam(":imagem", $imagem);
 
-        $prompt->execute(); //executa tudo e salva dados no DB
+        $stmt->execute(); //executa tudo e salva dados no DB
 
         //fecha o prompt e a conexão com o DB
         $pdo = null;
-        $prompt = null;
+        $stmt = null;
 
         header("Location: ../../index2.html"); //manda o usuário devolta para a página inicial
 
         die(); //termina o script
     } catch (PDOException $e) {
-        die("A Query falhou" . $e->getMessage()); //termina o script
+        die("A Query falhou: " . $e->getMessage()); //termina o script
     }
 }
 else{
