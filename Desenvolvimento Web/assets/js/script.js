@@ -5,10 +5,68 @@ document.addEventListener('DOMContentLoaded', () => {
     const formCadastro = document.getElementById('form-cadastro');
     const filmesContainer = document.getElementById('lista-filmes');
 
-  
+    const placeholderFilmes = [
+      {
+        titulo: "Robocop - O Policial do Futuro",
+        diretor: "Paul Verhoeven",
+        roteirista: "Edward Neumeier",
+        elenco: "Peter Weller e Nancy Allen",
+        nota: 10,
+        imagem: "https://media-cache.cinematerial.com/p/500x/rfbsfifj/robocop-movie-cover.jpg?v=1518192744"
+      },
+      {
+        titulo: "De Volta para o Futuro",
+        diretor: "Robert Zemeckis",
+        roteirista: "Robert Zemeckis",
+        elenco: "Michael J. Fox e Christopher Lloyd",
+        nota: 10,
+        imagem: "https://i.pinimg.com/736x/79/7c/12/797c12c67ed20c16309100688770f05e.jpg"
+      },
+      {
+        titulo: "Blade Runner - O Caçador de Androides",
+        diretor: "Ridley Scott",
+        roteirista: "Hampton Fancher",
+        elenco: "Harrison Ford e Sean Young",
+        nota: 10,
+        imagem: "https://i0.wp.com/jotacortizo.wordpress.com/wp-content/uploads/2017/10/blade-runner-poster.jpg?fit=800%2C1200&ssl=1&w=640"
+      },
+      {
+        titulo: "Highlander - O Guerreiro Imortal",
+        diretor: "Russell Mulcahy",
+        roteirista: "Gregory Widen",
+        elenco: "Christopher Lambert e Roxanne Hart",
+        nota: 10,
+        imagem: "https://www.imdb.com/pt/title/tt0091203/mediaviewer/rm1040549377/?ref_=tt_ov_i"
+      },
+      {
+        titulo: "Um Tira da Pesada",
+        diretor: "Martin Brest",
+        roteirista: "Daniel Petrie Jr.",
+        elenco: "Eddie Murphy e Judge Reinhold",
+        nota: 10,
+        imagem: "https://www.imdb.com/pt/title/tt0086960/mediaviewer/rm263955457/?ref_=tt_ov_i"
+      },
+      {
+        titulo: "Indiana Jones e a Última Cruzada",
+        diretor: "Steven Spielberg",
+        roteirista: "Jeffrey Boam",
+        elenco: "Harrison Ford e Sean Connery",
+        nota: 10,
+        imagem: "https://www.imdb.com/pt/title/tt0097576/mediaviewer/rm3821317377/?ref_=tt_ov_i"
+      }
+    ];
+
     // Abrir modal ao clicar no botão "Add +"
     botãoForm.addEventListener('click', () => {
       modal.style.display = 'flex';
+      const sortearFilme = Math.floor(Math.random() * placeholderFilmes.length);
+      const filmeSorteado = placeholderFilmes[sortearFilme];
+      document.getElementById("titulo").placeholder = `ex: ${filmeSorteado.titulo}`;
+      document.getElementById("diretor").placeholder = `ex: ${filmeSorteado.diretor}`;
+      document.getElementById("roteirista").placeholder = `ex: ${filmeSorteado.roteirista}`;
+      document.getElementById("elenco").placeholder = `ex: ${filmeSorteado.elenco}`;
+      document.getElementById("nota").placeholder = `ex: ${filmeSorteado.nota}`;
+      document.getElementById("imagem").placeholder = `ex: ${filmeSorteado.imagem}`;
     });
   
     // Fechar modal ao clicar no "X"
