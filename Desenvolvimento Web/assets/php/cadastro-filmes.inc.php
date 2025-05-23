@@ -1,5 +1,4 @@
 <?php
-
 //checa se o usuário salvou informações usando o método "POST"
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $titulo = $_POST["titulo"];
@@ -10,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $imagem = $_POST["imagem"];
 
     try {
-        require_once "./data-base-handler.inc.php"; //inclui data-base-handler.inc.php
+        require_once "data-base-handler.inc.php"; //inclui data-base-handler.inc.php
 
         $query = "INSERT INTO filmes (titulo, diretor, roteirista, elenco, nota, imagem) VALUES (:titulo, :diretor, :roteirista, :elenco, :nota, :imagem);";
 
@@ -31,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $stmt = null;
 
         header("Location: ../../index2.html"); //manda o usuário devolta para a página inicial
-
+        
         die(); //termina o script
     } catch (PDOException $e) {
         die("A Query falhou: " . $e->getMessage()); //termina o script

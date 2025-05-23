@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Processar o formulário de cadastro
     formCadastro.addEventListener('submit', (event) => {
-      event.preventDefault();
+      //event.preventDefault();
   
       const novoFilme = {
         titulo: document.getElementById('titulo').value,
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (novoFilme.titulo && novoFilme.diretor && novoFilme.roteirista && novoFilme.elenco && novoFilme.nota && novoFilme.imagem) {
         addFilme(novoFilme);
         saveFilmes();
-        formCadastro.reset(); // Limpar o formulário
+        //formCadastro.reset(); // Limpar o formulário
         modal.style.display = 'none'; // Fechar o modal
       } else {
         alert('Todos os campos são obrigatórios!');
