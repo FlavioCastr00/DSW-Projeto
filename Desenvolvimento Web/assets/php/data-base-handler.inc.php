@@ -11,7 +11,7 @@ try {
     //Gerenciar erros
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Apagar essa linha caso não funcione
 
-    echo "Conectado com sucesso ao banco!";
+    //echo "Conectado com sucesso ao banco!";
 }
 catch(PDOException $e) {
     echo "Conexão com Banco de Dados falhou: " . $e->getMessage();

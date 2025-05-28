@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       fetch('./assets/php/cadastro-filmes.inc.php', {method : 'POST', body : dadosForm}).then(res => res.json()).then(resposta => {
         if (resposta.sucesso) {
+          console.log('Resposta do php: ', resposta)
           addFilme(resposta.filme, resposta.filme.id);
           formCadastro.reset();
           alert('Filme adicionado com sucesso!');
@@ -127,21 +128,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Função para salvar filmes no localStorage
-    function saveFilmes() {
-      const filmes = [];
-      document.querySelectorAll('.filme').forEach((filmeDiv, index) => {
-        const filme = {
-          titulo: filmeDiv.querySelector('h2').textContent,
-          diretor: filmeDiv.querySelector('p:nth-of-type(1)').textContent.replace('Diretor: ', ''),
-          roteirista: filmeDiv.querySelector('p:nth-of-type(2)').textContent.replace('Roteirista: ', ''),
-          elenco: filmeDiv.querySelector('p:nth-of-type(3)').textContent.replace('Elenco: ', ''),
-          nota: filmeDiv.querySelector('h3').textContent.replace('Nota: ', ''),
-          imagem: filmeDiv.querySelector('img').src
-        };
-        filmes.push(filme);
-      });
-      localStorage.setItem('filmes', JSON.stringify(filmes));
-    }
+    // function saveFilmes() {
+    //   const filmes = [];
+    //   document.querySelectorAll('.filme').forEach((filmeDiv, index) => {
+    //     const filme = {
+    //       titulo: filmeDiv.querySelector('h2').textContent,
+    //       diretor: filmeDiv.querySelector('p:nth-of-type(1)').textContent.replace('Diretor: ', ''),
+    //       roteirista: filmeDiv.querySelector('p:nth-of-type(2)').textContent.replace('Roteirista: ', ''),
+    //       elenco: filmeDiv.querySelector('p:nth-of-type(3)').textContent.replace('Elenco: ', ''),
+    //       nota: filmeDiv.querySelector('h3').textContent.replace('Nota: ', ''),
+    //       imagem: filmeDiv.querySelector('img').src
+    //     };
+    //     filmes.push(filme);
+    //   });
+    //   localStorage.setItem('filmes', JSON.stringify(filmes));
+    // }
 
     // Função para carregar filmes do localStorage
     function loadFilmes() {
