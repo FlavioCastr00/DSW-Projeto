@@ -1,6 +1,5 @@
 /* CSS Base */
 body {
-    min-height: 100vh;
     background-image: url(../imagens/1155.jpg);
     background-repeat: no-repeat;
     background-position: center;
@@ -73,8 +72,8 @@ header hr {
     flex-direction: row;
 }
 
-img {
-    width: 130px;
+.filme-desc img {
+    width: 150px;
     margin: 10px;
 }
 
@@ -139,19 +138,80 @@ nav a{
 }
 
 /* Responsividade */
-@media (max-width: 1182px) {
+@media (max-width: 980px) {
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    section {
+        flex: 1; /* faz a section ocupar o espaço necessário */
+    }
+
+    .header-div {
+        width: 75%;
+        margin: 30px auto;
+    }
+
+    h1 {
+        font-size: 80px;
+        margin: 20px auto 10px;
+    }
+
+    header p {
+        font-size: 40px;
+        margin: 10px auto 20px;
+    }
+
+    .container {
+        margin: 40px auto;
+        display: flex;
+        flex-direction: column;
+        max-width: 75%;
+    }
+
+    .buttom {
+        height: 50px;
+        font-size: 40px;
+    }
+
     .filme {
         padding: 2px;
+    }
+
+    .desc h2 {
+        font-size: 50px;
+    }
+
+    .desc h3 {
+        font-size: 40px;
+    }
+
+    .desc p {
+        font-size: 30px;
     }
     
     .filme-desc {
         display: block;
     }
 
-    img {
+    .filme-desc img {
         display: block;
-        width: 130px;
-        margin: 10px auto;
+        width: 260px;
+        margin: 20px auto;
     }
 
     .desc {
@@ -160,11 +220,31 @@ nav a{
 
     .opcoes{
         width: 100%;
-        margin: 10px auto;
+        margin: 0 auto;
     }
 
     .opcoes button {
-        width:100%;
+        width:49%;
+        height: 50px;
+        font-size: 40px;
+    }
+
+    .footer-div {
+        width: 90%;
+    }
+
+    .recursos h3 {
+        font-size: 50px;
+        margin: 10px auto;
+    }
+
+    .recursos p {
+        font-size: 30px;
+        margin: 10px auto;
+    }
+
+    .nav-div {
+        width: 40%;
     }
 }
 

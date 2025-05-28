@@ -68,23 +68,23 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById("nota").placeholder = `ex: ${filmeSorteado.nota}`;
       document.getElementById("imagem").placeholder = `ex: ${filmeSorteado.imagem}`;
     });
-  
+
     // Fechar modal ao clicar no "X"
     closeModal.addEventListener('click', () => {
       modal.style.display = 'none';
     });
-  
+
     // Fechar modal ao clicar fora dele
     window.addEventListener('click', (event) => {
       if (event.target === modal) {
         modal.style.display = 'none';
       }
     });
-  
+
     // Processar o formulário de cadastro
     formCadastro.addEventListener('submit', (event) => {
-      //event.preventDefault();
-  
+      event.preventDefault();
+
       const novoFilme = {
         titulo: document.getElementById('titulo').value,
         diretor: document.getElementById('diretor').value,
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nota: document.getElementById('nota').value,
         imagem: document.getElementById('imagem').value
       };
-  
+
       if (novoFilme.titulo && novoFilme.diretor && novoFilme.roteirista && novoFilme.elenco && novoFilme.nota && novoFilme.imagem) {
         addFilme(novoFilme);
         saveFilmes();
@@ -103,9 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Todos os campos são obrigatórios!');
       }
     });
-  
+
     // Função para adicionar um filme ao DOM
-    function addFilme(filme, index) {
+    function addFilme(filme, id) {
       const filmeDiv = document.createElement('div');
       filmeDiv.classList.add('filme');
       filmeDiv.innerHTML = `
@@ -120,13 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         <div class="opcoes">
-          <button onclick="editarFilme(${index})">Editar</button>
-          <button onclick="deletarFilme(${index})">Deletar</button>
+          <button onclick="editarFilme(${id})">Editar</button>
+          <button onclick="deletarFilme(${id})">Deletar</button>
         </div>
       `;
       filmesContainer.appendChild(filmeDiv);
     }
-  
+
     // Função para salvar filmes no localStorage
     function saveFilmes() {
       const filmes = [];
@@ -143,34 +143,34 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       localStorage.setItem('filmes', JSON.stringify(filmes));
     }
-  
+
     // Função para carregar filmes do localStorage
     function loadFilmes() {
       const filmes = JSON.parse(localStorage.getItem('filmes')) || [];
       filmes.forEach((filme, index) => addFilme(filme, index));
     }
-  
+
     // Função para editar um filme
-    window.editarFilme = function (index) {
+    window.editarFilme = function (id) {
       const filmes = JSON.parse(localStorage.getItem('filmes'));
-      const filme = filmes[index];
-  
+      const filme = filmes[id];
+
       filme.titulo = prompt('Editar título:', filme.titulo);
       filme.diretor = prompt('Editar diretor:', filme.diretor);
       filme.roteirista = prompt('Editar roteirista:', filme.roteirista);
       filme.elenco = prompt('Editar elenco:', filme.elenco);
       filme.nota = prompt('Editar nota:', filme.nota);
       filme.imagem = prompt('Editar URL da imagem:', filme.imagem);
-  
+
       if (filme.titulo && filme.diretor && filme.roteirista && filme.elenco && filme.nota && filme.imagem) {
-        filmes[index] = filme;
+        filmes[id] = filme;
         localStorage.setItem('filmes', JSON.stringify(filmes));
         location.reload();
       } else {
         alert('Todos os campos são obrigatórios!');
       }
     };
-  
+
     // Função para deletar um filme
     window.deletarFilme = function (index) {
       const filmes = JSON.parse(localStorage.getItem('filmes'));
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('filmes', JSON.stringify(filmes));
       location.reload();
     };
-  
+
     // Carregar filmes ao iniciar
     loadFilmes();
   });

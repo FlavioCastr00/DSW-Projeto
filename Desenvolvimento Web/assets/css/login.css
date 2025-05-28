@@ -36,7 +36,7 @@ header hr {
     width: 90%;
 }
 
-section {
+.login {
     position: relative;
     max-width: 300px;
     background-color: transparent;
