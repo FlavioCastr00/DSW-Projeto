@@ -1,6 +1,8 @@
 <?php
 //checa se o usuário salvou informações usando o método "POST"
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    header("Content-Type: application/json");
+
     $titulo = $_POST["titulo"];
     $diretor = $_POST["diretor"];
     $roteirista = $_POST["roteirista"];
@@ -25,15 +27,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $stmt->execute(); //executa tudo e salva dados no DB
 
+        //Retorna o novo filme e o seu ID:
+        $id = $pdo->lastInsertId();
+        echo json_encode([
+            "sucesso" => true,
+            "filme" => [
+                "id" =>$id,
+                "titulo" => $titulo,
+                "diretor" => $diretor,
+                "roteirista" => $roteirista,
+                "elenco" => $elenco,
+                "nota" => $nota,
+                "imagem" => $imagem
+            ]
+        ]);
+
         //fecha o prompt e a conexão com o DB
         $pdo = null;
         $stmt = null;
-
-        header("Location: ../../index2.html"); //manda o usuário devolta para a página inicial
         
         die(); //termina o script
     } catch (PDOException $e) {
-        die("A Query falhou: " . $e->getMessage()); //termina o script
+        echo json_encode(["sucesso" => false, "erro" => "A query falhou: " . $e->getMessage()]);
+        die(); //termina o script
     }
 }
 else{

@@ -85,23 +85,22 @@ document.addEventListener('DOMContentLoaded', () => {
     formCadastro.addEventListener('submit', (event) => {
       event.preventDefault();
 
-      const novoFilme = {
-        titulo: document.getElementById('titulo').value,
-        diretor: document.getElementById('diretor').value,
-        roteirista: document.getElementById('roteirista').value,
-        elenco: document.getElementById('elenco').value,
-        nota: document.getElementById('nota').value,
-        imagem: document.getElementById('imagem').value
-      };
+      const dadosForm = new FormData(formCadastro);
 
-      if (novoFilme.titulo && novoFilme.diretor && novoFilme.roteirista && novoFilme.elenco && novoFilme.nota && novoFilme.imagem) {
-        addFilme(novoFilme);
-        saveFilmes();
-        //formCadastro.reset(); // Limpar o formulário
-        modal.style.display = 'none'; // Fechar o modal
-      } else {
-        alert('Todos os campos são obrigatórios!');
-      }
+      fetch('./assets/php/cadastro-filmes.inc.php', {method : 'POST', body : dadosForm}).then(res => res.json()).then(resposta => {
+        if (resposta.sucesso) {
+          addFilme(resposta.filme, resposta.filme.id);
+          formCadastro.reset();
+          alert('Filme adicionado com sucesso!');
+        }
+        else {
+          alert('Erro: ' + resposta.erro);
+        }
+        modal.style.display = 'none';
+      }).catch(erro => {
+        alert('Erro ao adicionar o filme');
+        console.error(erro);
+      });
     });
 
     // Função para adicionar um filme ao DOM
