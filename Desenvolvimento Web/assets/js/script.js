@@ -127,22 +127,32 @@ document.addEventListener('DOMContentLoaded', () => {
       filmesContainer.appendChild(filmeDiv);
     }
 
-    // Função para salvar filmes no localStorage
-    // function saveFilmes() {
-    //   const filmes = [];
-    //   document.querySelectorAll('.filme').forEach((filmeDiv, index) => {
-    //     const filme = {
-    //       titulo: filmeDiv.querySelector('h2').textContent,
-    //       diretor: filmeDiv.querySelector('p:nth-of-type(1)').textContent.replace('Diretor: ', ''),
-    //       roteirista: filmeDiv.querySelector('p:nth-of-type(2)').textContent.replace('Roteirista: ', ''),
-    //       elenco: filmeDiv.querySelector('p:nth-of-type(3)').textContent.replace('Elenco: ', ''),
-    //       nota: filmeDiv.querySelector('h3').textContent.replace('Nota: ', ''),
-    //       imagem: filmeDiv.querySelector('img').src
-    //     };
-    //     filmes.push(filme);
-    //   });
-    //   localStorage.setItem('filmes', JSON.stringify(filmes));
-    // }
+    window.deletarFilme = function(id) {
+      if(confirm("Tem certeza que deseja deletar este filme?")) {
+        fetch('./assets/php/deletar-filme.inc.php', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: 'id=' + encodeURIComponent(id)
+        }).then(res => res.json()).then(resposta => {
+          if (resposta.sucesso) {
+            const filmes = document.querySelectorAll('.filme');
+            filmes.forEach(filme =>{
+              const botao = filme.querySelector(`button[onclick="deletarFilme(${id})"]`);
+              if (botao) {
+                filme.remove();
+              }
+            });
+            alert('Filme deletado com sucesso!');
+          }
+          else {
+            alert('Erro ao deletar: ' + resposta.erro);
+          }
+        }).catch(erro => {
+          alert('Erro ao tentar deletar o filme.');
+          console.error(erro);
+        });
+      }
+    };
 
     // Função para carregar filmes do localStorage
     function loadFilmes() {
@@ -169,14 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         alert('Todos os campos são obrigatórios!');
       }
-    };
-
-    // Função para deletar um filme
-    window.deletarFilme = function (index) {
-      const filmes = JSON.parse(localStorage.getItem('filmes'));
-      filmes.splice(index, 1);
-      localStorage.setItem('filmes', JSON.stringify(filmes));
-      location.reload();
     };
 
     // Carregar filmes ao iniciar
