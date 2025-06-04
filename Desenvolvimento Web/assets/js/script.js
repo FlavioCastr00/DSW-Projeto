@@ -161,10 +161,29 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     //Função para abrir modal de edição filme:
-    window.editarFilme = function(id){
-      idEdiçãoAtual = id; //atribui o id do filme que está sendo editado
-      modalEdição.style.display = 'flex';
-    };
+    window.editarFilme = function(id) {
+    idEdiçãoAtual = id;
+    
+    // Buscar os dados do filme
+    fetch('./assets/php/buscar-filme.inc.php?id=' + id)
+        .then(res => res.json())
+        .then(filme => {
+            // Preencher os campos do formulário com os dados do filme
+            document.getElementById("titulo-edicao").value = filme.titulo;
+            document.getElementById("diretor-edicao").value = filme.diretor;
+            document.getElementById("roteirista-edicao").value = filme.roteirista;
+            document.getElementById("elenco-edicao").value = filme.elenco;
+            document.getElementById("nota-edicao").value = filme.nota;
+            document.getElementById("imagem-edicao").value = filme.imagem;
+            
+            // Abrir o modal após preencher os dados
+            modalEdição.style.display = 'flex';
+        })
+        .catch(erro => {
+            console.error('Erro ao buscar filme:', erro);
+            alert('Erro ao carregar os dados do filme.');
+        });
+};
 
     //função para processar form de edição de filme
     formEdição.addEventListener('submit', (event) => {
