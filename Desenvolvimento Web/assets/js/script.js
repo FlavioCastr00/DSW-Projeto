@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('modal-cadastro');
     const modalEdição = document.getElementById('modal-edição');
     const closeModal = document.querySelector('.close');
+    const closeEdição = document.getElementById('close-edição');
     const formCadastro = document.getElementById('form-cadastro');
     const formEdição = document.getElementById('form-edição');
     const filmesContainer = document.getElementById('lista-filmes');
@@ -170,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
 
       const dadosForm = new FormData(formEdição); //cria o objeto a partir do form no html
-      dadosForm.append('id', id); //adiciona informação do id ao objeto
+      dadosForm.append('id', idEdiçãoAtual); //adiciona informação do id ao objeto
 
       //inserir "fetch" para executar php aqui:
       if (confirm("Tem certeza que deseja atualizar este filme?")){
@@ -181,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (resposta.sucesso){
             const filmes = document.querySelectorAll('.filme');
             filmes.forEach(filme => {
-              const botao = filme.querySelector(`button[onclick="editarFilme(${id})"]`);
+              const botao = filme.querySelector(`button[onclick="editarFilme(${idEdiçãoAtual})"]`);
               if (botao){
                 filme.remove(); //remove o filme do DOM temporáriamente
               }
@@ -203,12 +204,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Função para carregar filmes do localStorage
-    function loadFilmes() {
-      const filmes = JSON.parse(localStorage.getItem('filmes')) || [];
-      filmes.forEach((filme, index) => addFilme(filme, index));
-    }
+    closeEdição.addEventListener('click', () => {
+      modalEdição.style.display = 'none';
+    });
 
-    // Carregar filmes ao iniciar
-    loadFilmes();
+    // // Função para carregar filmes do localStorage
+    // function loadFilmes() {
+    //   const filmes = JSON.parse(localStorage.getItem('filmes')) || [];
+    //   filmes.forEach((filme, index) => addFilme(filme, index));
+    // }
+
+    // // Carregar filmes ao iniciar
+    // loadFilmes();
   });
