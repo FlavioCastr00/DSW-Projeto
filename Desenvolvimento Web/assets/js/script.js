@@ -1,9 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const botãoForm = document.getElementById('chamarForm');
     const modal = document.getElementById('modal-cadastro');
+    const modalEdição = document.getElementById('modal-edição');
     const closeModal = document.querySelector('.close');
     const formCadastro = document.getElementById('form-cadastro');
+    const formEdição = document.getElementById('form-edição');
     const filmesContainer = document.getElementById('lista-filmes');
+
+    let idEdiçãoAtual = null;
 
     const placeholderFilmes = [
       {
@@ -127,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
       filmesContainer.appendChild(filmeDiv);
     }
 
+    //Função para deletar filme:
     window.deletarFilme = function(id) {
       if(confirm("Tem certeza que deseja deletar este filme?")) {
         fetch('./assets/php/deletar-filme.inc.php', {
@@ -154,32 +159,55 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
+    //Função para abrir modal de edição filme:
+    window.editarFilme = function(id){
+      idEdiçãoAtual = id; //atribui o id do filme que está sendo editado
+      modalEdição.style.display = 'flex';
+    };
+
+    //função para processar form de edição de filme
+    formEdição.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const dadosForm = new FormData(formEdição); //cria o objeto a partir do form no html
+      dadosForm.append('id', id); //adiciona informação do id ao objeto
+
+      //inserir "fetch" para executar php aqui:
+      if (confirm("Tem certeza que deseja atualizar este filme?")){
+        fetch('./assets/php/filme-update.inc.php', {
+          method: 'POST',
+          body: dadosForm //manda os dados para o scipt em php
+        }).then(res => res.json()).then(resposta => {
+          if (resposta.sucesso){
+            const filmes = document.querySelectorAll('.filme');
+            filmes.forEach(filme => {
+              const botao = filme.querySelector(`button[onclick="editarFilme(${id})"]`);
+              if (botao){
+                filme.remove(); //remove o filme do DOM temporáriamente
+              }
+            });
+
+            console.log("Resposta do PHP: ", resposta);
+            addFilme(resposta.filme, resposta.filme.id); //adiciona o filme novamente
+            formEdição.reset();
+            modalEdição.style.display = 'none';
+            alert("Filme editado com sucesso!");
+          }
+          else{
+            alert("Erro: " + resposta.erro);
+          }
+        }).catch(erro => {
+          alert("Erro ao atualizar o filme.");
+          console.error(erro);
+        });
+      }
+    });
+
     // Função para carregar filmes do localStorage
     function loadFilmes() {
       const filmes = JSON.parse(localStorage.getItem('filmes')) || [];
       filmes.forEach((filme, index) => addFilme(filme, index));
     }
-
-    // Função para editar um filme
-    window.editarFilme = function (id) {
-      const filmes = JSON.parse(localStorage.getItem('filmes'));
-      const filme = filmes[id];
-
-      filme.titulo = prompt('Editar título:', filme.titulo);
-      filme.diretor = prompt('Editar diretor:', filme.diretor);
-      filme.roteirista = prompt('Editar roteirista:', filme.roteirista);
-      filme.elenco = prompt('Editar elenco:', filme.elenco);
-      filme.nota = prompt('Editar nota:', filme.nota);
-      filme.imagem = prompt('Editar URL da imagem:', filme.imagem);
-
-      if (filme.titulo && filme.diretor && filme.roteirista && filme.elenco && filme.nota && filme.imagem) {
-        filmes[id] = filme;
-        localStorage.setItem('filmes', JSON.stringify(filmes));
-        location.reload();
-      } else {
-        alert('Todos os campos são obrigatórios!');
-      }
-    };
 
     // Carregar filmes ao iniciar
     loadFilmes();
