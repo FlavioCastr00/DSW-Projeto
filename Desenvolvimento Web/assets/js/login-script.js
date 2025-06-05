@@ -6,9 +6,6 @@ const formCadastro = document.getElementById('form-cadastro');
 const senha = document.getElementById('senha');
 const confirmaSenha = document.getElementById('confirma-senha');
 
-senha.addEventListener('blur', checarSenhas);
-confirmaSenha.addEventListener('blur', checarSenhas);
-
 //Abrir modal ao clicar em "Registre-se"
 botãoForm.addEventListener('click', () => {
     modal.style.display = 'flex';
@@ -45,4 +42,9 @@ function checarSenhas(){
     }
 }
 
-formCadastro.addEventListener('submit', (event) => {});
+formCadastro.addEventListener('submit', (event) => {
+    if(senha.value !== confirmaSenha.value){
+        event.preventDefault();
+        checarSenhas();
+    }
+});

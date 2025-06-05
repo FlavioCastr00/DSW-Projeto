@@ -226,13 +226,4 @@ document.addEventListener('DOMContentLoaded', () => {
     closeEdição.addEventListener('click', () => {
       modalEdição.style.display = 'none';
     });
-
-    // // Função para carregar filmes do localStorage
-    // function loadFilmes() {
-    //   const filmes = JSON.parse(localStorage.getItem('filmes')) || [];
-    //   filmes.forEach((filme, index) => addFilme(filme, index));
-    // }
-
-    // // Carregar filmes ao iniciar
-    // loadFilmes();
   });
