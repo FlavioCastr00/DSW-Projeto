@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       fetch('./assets/php/cadastro-filmes.inc.php', {method : 'POST', body : dadosForm}).then(res => res.json()).then(resposta => {
         if (resposta.sucesso) {
-          console.log('Resposta do php: ', resposta)
+          console.log('Resposta do php: ', resposta);
           addFilme(resposta.filme, resposta.filme.id);
           formCadastro.reset();
           alert('Filme adicionado com sucesso!');

@@ -2,7 +2,7 @@ const botãoForm = document.getElementById('chamarForm');
 const modal = document.getElementById('modal-cadastro');
 const botãoFechar = document.querySelector('.close');
 const formCadastro = document.getElementById('form-cadastro');
-
+//Senhas:
 const senha = document.getElementById('senha');
 const confirmaSenha = document.getElementById('confirma-senha');
 
@@ -43,8 +43,30 @@ function checarSenhas(){
 }
 
 formCadastro.addEventListener('submit', (event) => {
+    event.preventDefault();
     if(senha.value !== confirmaSenha.value){
-        event.preventDefault();
         checarSenhas();
+        return;
+    }
+    else {
+        const dadosForm = new FormData(formCadastro);
+        
+        fetch('./assets/php/inserir-user.inc.php', {
+            method: 'POST',
+            body: dadosForm
+        }).then(res => res.json()).then(resposta => {
+            if(resposta.sucesso){
+                console.log('Resposta do php: ', resposta);
+                formCadastro.reset();
+                alert('Usuário criado com sucesso!');
+            }
+            else {
+                alert('Erro: ' + resposta.erro);
+            }
+            modal.style.display = 'none';
+        }).catch(erro => {
+            alert('Erro ao criar usuário ;-;');
+            console.error(erro);
+        });
     }
 });
